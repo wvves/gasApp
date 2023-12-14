@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/oilsTypeList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="1"
+        tools:listitem="@layout/item_type_oil" />
+
+    <TextView
+        android:id="@+id/capacityTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/capacity"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oilsTypeList" />
+
+    <TextView
+        android:id="@+id/sumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="80dp"
+        android:text="@string/sum"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oilsTypeList" />
+
+    <TextView
+        android:id="@+id/allSumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sum_default"
+        app:layout_constraintEnd_toEndOf="@+id/sumTextView"
+        app:layout_constraintStart_toStartOf="@+id/sumTextView"
+        app:layout_constraintTop_toBottomOf="@+id/sumTextView" />
+
+    <TextView
+        android:id="@+id/allCapacityTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/capacity_default"
+        app:layout_constraintEnd_toEndOf="@+id/capacityTextView"
+        app:layout_constraintStart_toStartOf="@+id/capacityTextView"
+        app:layout_constraintTop_toBottomOf="@+id/capacityTextView" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/priceOrCapacityCardView"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/capacityOrSumTextView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingVertical="10dp"
+            android:paddingStart="5dp"
+            tools:ignore="RtlSymmetry">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/PriceOrCapacityTextInput"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                app:counterMaxLength="3"
+                android:layout_weight="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/PriceOrCapacityEditInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberSigned"
+                    android:lines="1"
+                    android:textAlignment="center" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/action5or1000"
+                android:layout_width="50dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="5dp"
+                android:text="@string/action_1000"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/black"
+                app:cornerRadius="5dp"
+                app:strokeColor="#000000"
+                app:strokeWidth="1dp"/>
+
+            <Button
+                android:id="@+id/action10or2000"
+                android:layout_width="50dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginHorizontal="5dp"
+                android:text="@string/action_2000"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/black"
+                app:cornerRadius="5dp"
+                app:strokeColor="#000000"
+                app:strokeWidth="1dp" />
+
+            <Button
+                android:id="@+id/action20or3000"
+                android:layout_width="50dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:text="@string/action_3000"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/black"
+                app:cornerRadius="5dp"
+                app:strokeColor="#000000"
+                app:strokeWidth="1dp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/capacityOrSumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="177dp"
+        android:text="@string/enter_capacity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/allSumTextView" />
+
+    <Button
+
+        android:id="@+id/payButton"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="200dp"
+        android:text="@string/action_pay"
+        android:textSize="16sp"
+        app:cornerRadius="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/priceOrCapacityCardView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
