@@ -1,32 +1,19 @@
 package com.example.gasapp
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.gasapp.databinding.ActivityMainBinding
-import com.example.gasapp.model.AppDatabase
-import com.example.gasapp.model.stations.entities.OrderDbEntity
-import com.example.gasapp.model.stations.room.OrdersDao
+import com.example.gasapp.push_service.PushNotificationReceiver
+import com.example.gasapp.push_service.PushNotificationService
 import com.example.gasapp.screens.tabs.TabsFragment
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.flatMapConcat
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.mapLatest
-import kotlinx.coroutines.flow.toList
 import java.util.regex.Pattern
 
 class MainActivity : AppCompatActivity() {
@@ -53,8 +40,15 @@ class MainActivity : AppCompatActivity() {
         prepareRootNavController(isSignedIn(), navController)
         onNavControllerActivated(navController)
 
+        PushNotificationService.showNotification(this, "Era top", "Era moy kumir")
+
         supportFragmentManager.registerFragmentLifecycleCallbacks(fragmentListener, true)
 
+        val actionType = intent.getStringExtra(PushNotificationService.ACTION)
+        if (PushNotificationService.ACTION_CONFIRM == actionType) {
+            navController.setGraph(R.navigation.nav_graph)
+            navController.navigate(R.id.createOrderFragment)
+        }
     }
 
     override fun onDestroy() {
@@ -123,7 +117,7 @@ class MainActivity : AppCompatActivity() {
         val startDestinations = topLevelDestinations + graph.startDestinationId
         return startDestinations.contains(destination.id)
     }
-    
+
     private fun isSignedIn(): Boolean {
         println("123123213123122312")
         return false
